@@ -1,0 +1,49 @@
+import caperucita.*
+import feroz.*
+
+describe "Historia de Caperucita Roja" {
+  test " El lobo va corriendo hasta el bosque" {
+    feroz.correr()
+    assert.equals(9, feroz.peso())    
+  }
+  test "El Lobo se come a la abuelita"{  // no se si este test era necesario.
+    feroz.comer(abuelita)
+    assert.notThat(abuelita.estaViva())
+  }
+  test "Lobo Aumenta de peso por comer a la Abuelita" {
+    feroz.comer(abuelita)
+    assert.equals(15,feroz.peso())    
+  }
+  test "Caperucita cruza el bosque y se le cae una manzana de su canasta" {
+    caperucita.perderManzana()
+    assert.equals(61, caperucita.peso())
+  }
+  test "El lobo se come a caperucita"{
+    feroz.comer(caperucita)
+    assert.notThat(caperucita.estaViva())
+  }
+  test "Lobo aumenta de peso por comer a caperucita" {
+    feroz.comer(caperucita)
+    assert.equals(16.12, feroz.peso())
+    
+  }
+  test "El cazador mata al lobo"{
+    cazador.interactuarCon(feroz)
+    assert.notThat(feroz.estaVivo())
+  }
+  test "El lobo mata al cazador"{
+    cazador.perderHacha()
+    cazador.interactuarCon(feroz)
+    assert.notThat(cazador.estaVivo())
+  }
+  test "El lobo aumenta de peso por comer al cazador" {
+    cazador.perderHacha()
+    cazador.interactuarCon(feroz)
+    assert.equals(18.5, feroz.peso())    
+  }
+  test "El lobo sufre una crisis despues de comer al cazador"{
+    feroz.comer(cazador)
+    feroz.sufrirCrisis()
+    assert.equals(10, 10)
+  }
+}

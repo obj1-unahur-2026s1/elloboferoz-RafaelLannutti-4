@@ -1,5 +1,6 @@
 object feroz {
 	var peso = 10
+	var estaVivo = true 
 
 	method peso() = peso
 
@@ -10,8 +11,11 @@ object feroz {
 	}
 
 	method disminuirPeso(cantidad) {
-		peso = 0.max(peso - cantidad) //para evitar los numeros negativos
-	}
+        peso = 0.max(peso - cantidad) 
+        if (peso == 0) {
+            self.morir()
+        }
+    }
 
 	method sufrirCrisis() {
 		peso = 10
@@ -19,12 +23,15 @@ object feroz {
 
 	method comer(comida) {
 		self.aumentarPeso(comida.peso() * 0.1)
+		comida.morir()
+
 	}
 
 	method correr() {
 		self.disminuirPeso(1)
 	}
     method morir(){
-        peso = 0
+        estaVivo = false
     }
+	method estaVivo() = estaVivo
 }
